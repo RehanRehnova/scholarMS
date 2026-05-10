@@ -36,7 +36,6 @@ function runExam(btn){
 }
 
 /* ── DEMO FORM ── */
-// Demo form handling
 document.addEventListener('DOMContentLoaded', function() {
     const demoForm = document.getElementById('demoForm');
     if (!demoForm) return;
@@ -49,24 +48,20 @@ document.addEventListener('DOMContentLoaded', function() {
     demoForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        // 1. UI: Show loading state
         submitBtn.disabled = true;
         btnText.style.display = 'none';
         btnLoader.style.display = 'inline';
         formAlert.style.display = 'none';
 
-        // 2. Collect form data
         const formData = new FormData(demoForm);
         const data = Object.fromEntries(formData.entries());
 
-        // 3. Basic frontend validation
         if (!data.full_name ||!data.school_name ||!data.phone ||!data.email) {
             showAlert('Please fill all required fields.', 'error');
             resetButton();
             return;
         }
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             showAlert('Please enter a valid email address.', 'error');
@@ -74,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // 4. Send to backend
         try {
             const response = await fetch('/api/book-demo', {
                 method: 'POST',
@@ -88,8 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 showAlert('Success! We\'ll contact you within 2 business hours.', 'success');
-                demoForm.reset(); // Clear form
-                // Optional: Scroll to success message
+                demoForm.reset(); 
                 formAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
                 showAlert(result.error || 'Something went wrong. Please try again.', 'error');

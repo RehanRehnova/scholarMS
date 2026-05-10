@@ -11,7 +11,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# 1. Connect to Supabase using env vars
 url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 
@@ -23,7 +22,6 @@ supabase: Client = create_client(url, key)
 def get_site_data():
     """Fetch all data from Supabase in parallel-ish calls"""
     try:
-        # 2. Query each table
         testimonials = supabase.table("testimonials")\
             .select("*")\
             .eq("is_active", True)\
@@ -49,7 +47,6 @@ def get_site_data():
         }
     except Exception as e:
         print(f"Supabase error: {e}")
-        # Fallback to prevent site crash
         return {
             "testimonials": [],
             "stats": {"schools_onboarded": "100+", "parent_satisfaction": "98%", "setup_time": "< 5 min", "uptime_sla": "99.9%"},
@@ -68,30 +65,25 @@ def home():
         year=2025
     )
 
-# Add this table to Supabase first - SQL at bottom
 
 @app.route("/api/book-demo", methods=["POST"])
 def book_demo():
     try:
         data = request.get_json()
 
-        # 1. Backend validation
         required_fields = ['full_name', 'school_name', 'phone', 'email', 'students_count', 'preferred_time']
         for field in required_fields:
             if not data.get(field):
                 return jsonify({"error": f"Missing required field: {field}"}), 400
 
-        # Email format check
         email_regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
         if not re.match(email_regex, data['email']):
             return jsonify({"error": "Invalid email format"}), 400
 
-        # Phone basic check - at least 10 digits
         phone_digits = re.sub(r'\D', '', data['phone'])
         if len(phone_digits) < 10:
             return jsonify({"error": "Phone number must have at least 10 digits"}), 400
 
-        # 2. Prepare data for Supabase
         demo_request = {
             "full_name": data['full_name'].strip(),
             "school_name": data['school_name'].strip(),
@@ -100,18 +92,13 @@ def book_demo():
             "students_count": data['students_count'],
             "preferred_time": data['preferred_time'],
             "message": data.get('message', '').strip(),
-            "status": "new", # new, contacted, scheduled, completed
+            "status": "new", 
             "source": "website"
         }
-
-        # 3. Insert into Supabase
         result = supabase.table("demo_requests").insert(demo_request).execute()
         print(result)
         if not result.data:
             return jsonify({"error": "Failed to save request"}), 500
-
-        # 4. Optional: Send email notification to your team here
-        # send_notification_email(demo_request)
 
         return jsonify({
             "success": True,
