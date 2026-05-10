@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScholarMS — Intelligent School Management Platform</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+  <div class="nav-logo-mark">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M12 3L2 8.5l10 5.5 10-5.5L12 3Z" fill="white" opacity=".7"/>
+      <path d="M2 15.5l10 5.5 10-5.5" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M2 12l10 5.5L22 12" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".55"/>
+    </svg>
+  </div>
+  <div class="nav-logo-group">
+    <span class="nav-logo-text">Scholar<em>MS</em></span>
+    <span class="nav-logo-sub">by Rehnova Digitals</span>
+  </div>
+</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#analytics">Analytics</a></li>
+    <li><a href="#integrations">Integrations</a></li>
+    <li><a href="#how-it-works">How it Works</a></li>
+    <li><a href="#demo">Book Demo</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#demo" class="btn btn-outline">Book Demo</a>
+  </div>
+  <button class="nav-ham" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="#features">Features</a>
+  <a href="#analytics">Analytics</a>
+  <a href="#integrations">Integrations</a>
+  <a href="#how-it-works">How it Works</a>
+  <a href="#demo">Book Demo</a>
+  <div class="drawer-btns">
+    <a href="#demo" class="btn btn-outline w-full">Book a Demo</a>
+  </div>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="top">
+    
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </span>
+    AI-powered school management — now live
+  </div>
+
+  <h1 class="hero-title">
+    The Intelligent Platform<br>for <span class="accent">Modern Schools</span>
+  </h1>
+
+  <p class="hero-sub">
+    ScholarMS unifies fee collection, attendance, exam generation, and parent communication in one seamless platform. Built for schools that demand more.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#demo" class="btn btn-blue btn-lg">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Book a Free Demo
+    </a>
+    <a href="#video" class="btn btn-outline btn-lg">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+      Watch Overview
+    </a>
+  </div>
+
+  <div class="hero-trusted">
+    <div class="hero-trusted-avatars">
+      <span style="background:#dbeafe;color:var(--blue)">R</span>
+      <span style="background:#d1fae5;color:var(--green)">A</span>
+      <span style="background:#fef3c7;color:var(--amber)">N</span>
+      <span style="background:#fde8ee;color:var(--rose)">K</span>
+      <span style="background:#ede9fe;color:#6d28d9">S</span>
+    </div>
+    <p>Trusted by <strong>{{ trusted_count }} schools</strong> across Pakistan</p>
+  </div>
+
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <div class="hero-stat-num">{{ stats.schools_onboarded }}</div>
+      <div class="hero-stat-label">Schools onboarded</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">98%</div>
+      <div class="hero-stat-label">Parent satisfaction</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">&lt; 5 min</div>
+      <div class="hero-stat-label">Setup time</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">99.9%</div>
+      <div class="hero-stat-label">Uptime SLA</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ VIDEO ══════════ -->
+<section class="video-section" id="video">
+  <div class="section-head">
+    <span class="label reveal">Platform Overview</span>
+    <h2 class="display reveal reveal-d1">See ScholarMS in Action</h2>
+    <p class="reveal reveal-d2">A concise walkthrough of how ScholarMS transforms your school's daily operations from day one.</p>
+  </div>
+  <div class="video-frame reveal">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&color=white" title="ScholarMS Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="video-meta reveal" style="margin-top:20px">
+    <span class="video-meta-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+      3 min walkthrough
+    </span>
+    <span class="video-meta-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      No sign-up required
+    </span>
+    <span class="video-meta-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+      Free to watch
+    </span>
+  </div>
+</section>
+
+<!-- ══════════ FEATURES GRID ══════════ -->
+<section class="features-bg" id="features">
+  <div class="section-head">
+    <span class="label reveal">Core Modules</span>
+    <h2 class="display reveal reveal-d1">Everything Your School Needs</h2>
+    <p class="reveal reveal-d2">Six deeply integrated modules that talk to each other, so you never have to reconcile data manually.</p>
+  </div>
+  <div class="feat-grid max-w">
+
+    <!-- Fee Management -->
+    <div class="feat-card c-blue reveal">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="feat-icon-wrap" style="background:var(--blue-light)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.75" stroke-linecap="round">
+            <rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h3M15 15h3"/>
+          </svg>
+        </div>
+        <h3>Fee Management</h3>
+      </div>
+      <p>Automated billing cycles, smart overdue detection, instalment tracking, and digital receipts — all reconciled in real time without a spreadsheet in sight.</p>
+      <!-- Mini SVG visual -->
+      <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;background:var(--bg-2)">
+        <rect x="12" y="12" width="296" height="56" rx="8" fill="white"/>
+        <!-- Bar chart mini -->
+        <rect x="28" y="44" width="18" height="14" rx="3" fill="var(--blue-light)"/>
+        <rect x="52" y="36" width="18" height="22" rx="3" fill="var(--blue)"/>
+        <rect x="76" y="30" width="18" height="28" rx="3" fill="var(--blue)"/>
+        <rect x="100" y="40" width="18" height="18" rx="3" fill="var(--blue-light)"/>
+        <rect x="124" y="26" width="18" height="32" rx="3" fill="var(--blue)"/>
+        <line x1="152" y1="20" x2="152" y2="64" stroke="var(--border)" stroke-width="1"/>
+        <text x="162" y="30" font-size="8" fill="var(--ink-4)" font-family="JetBrains Mono">Total Collected</text>
+        <text x="162" y="43" font-size="14" fill="var(--ink)" font-family="JetBrains Mono" font-weight="600">Rs 94,500</text>
+        <rect x="162" y="50" width="48" height="12" rx="6" fill="var(--green-light)"/>
+        <text x="166" y="59" font-size="7" fill="var(--green)" font-family="Instrument Sans" font-weight="700">↑ 12% MoM</text>
+      </svg>
+      <div class="feat-chips">
+        <span class="feat-chip" style="background:var(--blue-light);color:var(--blue)">Auto-invoicing</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Receipts</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Instalments</span>
+      </div>
+    </div>
+
+    <!-- Student Management -->
+    <div class="feat-card c-green reveal reveal-d1">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="feat-icon-wrap" style="background:var(--green-light)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.75" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3>Student Management</h3>
+      </div>
+      <p>Comprehensive profiles with guardian contacts, academic history, health records, and documents — all searchable and exportable with one click.</p>
+      <!-- Mini profile cards SVG -->
+      <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;background:var(--bg-2)">
+        <rect x="12" y="12" width="88" height="56" rx="8" fill="white"/>
+        <circle cx="56" cy="32" r="10" fill="var(--green-light)"/>
+        <text x="52" y="36" font-size="10" fill="var(--green)" font-family="Instrument Sans" font-weight="700">A</text>
+        <text x="38" y="52" font-size="7" fill="var(--ink)" font-family="Instrument Sans" font-weight="600">Ayesha K.</text>
+        <rect x="36" y="56" width="40" height="7" rx="3" fill="var(--green-light)"/>
+        <text x="40" y="62" font-size="5" fill="var(--green)" font-weight="700">Grade 8A</text>
+        <rect x="108" y="12" width="88" height="56" rx="8" fill="white"/>
+        <circle cx="152" cy="32" r="10" fill="var(--blue-light)"/>
+        <text x="148" y="36" font-size="10" fill="var(--blue)" font-family="Instrument Sans" font-weight="700">B</text>
+        <text x="134" y="52" font-size="7" fill="var(--ink)" font-family="Instrument Sans" font-weight="600">Bilal A.</text>
+        <rect x="134" y="56" width="40" height="7" rx="3" fill="var(--blue-light)"/>
+        <text x="137" y="62" font-size="5" fill="var(--blue)" font-weight="700">Grade 9B</text>
+        <rect x="204" y="12" width="88" height="56" rx="8" fill="white"/>
+        <circle cx="248" cy="32" r="10" fill="var(--amber-light)"/>
+        <text x="244" y="36" font-size="10" fill="var(--amber)" font-family="Instrument Sans" font-weight="700">S</text>
+        <text x="232" y="52" font-size="7" fill="var(--ink)" font-family="Instrument Sans" font-weight="600">Sara M.</text>
+        <rect x="232" y="56" width="40" height="7" rx="3" fill="var(--amber-light)"/>
+        <text x="235" y="62" font-size="5" fill="var(--amber)" font-weight="700">Grade 7C</text>
+      </svg>
+      <div class="feat-chips">
+        <span class="feat-chip" style="background:var(--green-light);color:var(--green)">Rich Profiles</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Documents</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">CSV Export</span>
+      </div>
+    </div>
+
+    <!-- Exam Generation -->
+    <div class="feat-card c-amber reveal reveal-d2">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="feat-icon-wrap" style="background:var(--amber-light)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.75" stroke-linecap="round">
+            <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+        </div>
+        <h3>AI Exam Generation</h3>
+      </div>
+      <p>Connect your syllabus via Google Sheets or cloud storage. ScholarMS auto-generates balanced, print-ready exams for every class simultaneously.</p>
+      <!-- Exam paper SVG -->
+      <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;background:var(--bg-2)">
+        <rect x="12" y="12" width="170" height="56" rx="8" fill="white"/>
+        <text x="22" y="28" font-size="7" fill="var(--amber)" font-family="Instrument Sans" font-weight="700">BIOLOGY — GRADE 10</text>
+        <line x1="22" y1="32" x2="172" y2="32" stroke="var(--border)" stroke-width="1"/>
+        <rect x="22" y="37" width="120" height="5" rx="2" fill="var(--bg-2)"/>
+        <rect x="22" y="46" width="90" height="5" rx="2" fill="var(--bg-2)"/>
+        <rect x="22" y="55" width="105" height="5" rx="2" fill="var(--bg-2)"/>
+        <rect x="190" y="12" width="118" height="56" rx="8" fill="white"/>
+        <!-- Progress ring SVG -->
+        <circle cx="249" cy="40" r="20" fill="none" stroke="var(--bg-2)" stroke-width="4"/>
+        <circle cx="249" cy="40" r="20" fill="none" stroke="var(--amber)" stroke-width="4" stroke-dasharray="100 26" stroke-dashoffset="-6" stroke-linecap="round"/>
+        <text x="244" y="37" font-size="9" fill="var(--ink)" font-family="JetBrains Mono" font-weight="600">78%</text>
+        <text x="237" y="48" font-size="6" fill="var(--ink-4)" font-family="Instrument Sans">Generating</text>
+      </svg>
+      <div class="feat-chips">
+        <span class="feat-chip" style="background:var(--amber-light);color:var(--amber)">Google Sheets</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Cloud Storage</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">All Classes</span>
+      </div>
+    </div>
+
+    <!-- Attendance -->
+    <div class="feat-card c-rose reveal reveal-d3">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="feat-icon-wrap" style="background:var(--rose-light)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="1.75" stroke-linecap="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/>
+            <circle cx="17" cy="18" r="3" fill="var(--rose)" stroke="none"/>
+            <path d="M15.5 18l1 1 2-2" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3>Mobile Attendance</h3>
+      </div>
+      <p>Teachers mark attendance in under 30 seconds from any phone. GPS-verified, real-time synced, with automated parent alerts on consecutive absences.</p>
+      <!-- Phone mockup SVG -->
+      <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;background:var(--bg-2)">
+        <rect x="100" y="8" width="120" height="64" rx="10" fill="white" stroke="var(--border)" stroke-width="1"/>
+        <rect x="110" y="22" width="100" height="9" rx="4" fill="var(--rose-light)"/>
+        <text x="120" y="30" font-size="6" fill="var(--rose)" font-family="Instrument Sans" font-weight="700">Grade 9B · Sat 9 May</text>
+        <!-- Student rows -->
+        <rect x="108" y="35" width="104" height="8" rx="3" fill="var(--bg-2)"/>
+        <rect x="108" y="35" width="50" height="8" rx="3" fill="var(--green)"/>
+        <text x="116" y="41" font-size="5.5" fill="white" font-family="Instrument Sans" font-weight="600">● Present</text>
+        <rect x="108" y="47" width="104" height="8" rx="3" fill="var(--bg-2)"/>
+        <rect x="108" y="47" width="50" height="8" rx="3" fill="var(--rose)"/>
+        <text x="116" y="53" font-size="5.5" fill="white" font-family="Instrument Sans" font-weight="600">● Absent</text>
+        <rect x="116" y="59" width="88" height="9" rx="4.5" fill="var(--blue)"/>
+        <text x="139" y="65" font-size="6" fill="white" font-family="Instrument Sans" font-weight="700">Submit ✓</text>
+        <!-- Live badge -->
+        <rect x="12" y="24" width="60" height="14" rx="7" fill="var(--rose-light)"/>
+        <circle cx="22" cy="31" r="3" fill="var(--rose)"/>
+        <text x="28" y="34.5" font-size="6" fill="var(--rose)" font-family="Instrument Sans" font-weight="700">LIVE SYNC</text>
+        <rect x="12" y="46" width="68" height="24" rx="8" fill="white"/>
+        <text x="22" y="56" font-size="6" fill="var(--ink-4)" font-family="Instrument Sans">Absent today</text>
+        <text x="22" y="65" font-size="12" fill="var(--rose)" font-family="Cormorant Garamond" font-weight="700">3</text>
+        <text x="36" y="65" font-size="6" fill="var(--ink-4)" font-family="Instrument Sans">students</text>
+        <!-- Right -->
+        <rect x="248" y="24" width="60" height="24" rx="8" fill="white"/>
+        <text x="258" y="34" font-size="6" fill="var(--ink-4)" font-family="Instrument Sans">Present</text>
+        <text x="258" y="43" font-size="12" fill="var(--green)" font-family="Cormorant Garamond" font-weight="700">94%</text>
+      </svg>
+      <div class="feat-chips">
+        <span class="feat-chip" style="background:var(--rose-light);color:var(--rose)">Mobile-first</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">GPS Verified</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Auto-alerts</span>
+      </div>
+    </div>
+
+    <!-- Parent Reporting -->
+    <div class="feat-card c-teal reveal reveal-d4">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="feat-icon-wrap" style="background:var(--teal-light)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.75" stroke-linecap="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <h3>Parent Reporting</h3>
+      </div>
+      <p>Personalised monthly reports automatically sent to each parent over WhatsApp and Email. Progress summaries, fee alerts, attendance flags — zero effort.</p>
+      <!-- WhatsApp preview SVG -->
+      <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;background:#e5ddd5">
+        <rect x="12" y="12" width="180" height="56" rx="10" fill="#dcf8c6"/>
+        <text x="22" y="26" font-size="7" fill="#075e54" font-family="Instrument Sans" font-weight="700">📊 Monthly Report · May 2025</text>
+        <text x="22" y="37" font-size="6.5" fill="#333" font-family="Instrument Sans">Ayesha Khan — Grade 8A</text>
+        <text x="22" y="47" font-size="6" fill="#555" font-family="Instrument Sans">Attendance: 96% ✅  Avg: 87/100 📈</text>
+        <text x="22" y="57" font-size="6" fill="#555" font-family="Instrument Sans">Fee: Paid ✅  Rank: 2nd 🏅</text>
+        <text x="170" y="67" font-size="6" fill="#999" font-family="Instrument Sans">09:42 ✓✓</text>
+        <!-- Email preview -->
+        <rect x="208" y="12" width="100" height="56" rx="8" fill="white"/>
+        <rect x="213" y="17" width="90" height="5" rx="2" fill="var(--bg-2)"/>
+        <rect x="213" y="26" width="70" height="4" rx="2" fill="var(--blue-light)"/>
+        <rect x="213" y="34" width="85" height="3" rx="1" fill="var(--bg-2)"/>
+        <rect x="213" y="40" width="75" height="3" rx="1" fill="var(--bg-2)"/>
+        <rect x="213" y="46" width="80" height="3" rx="1" fill="var(--bg-2)"/>
+        <rect x="213" y="55" width="56" height="9" rx="4" fill="var(--blue)"/>
+        <text x="219" y="61.5" font-size="5.5" fill="white" font-family="Instrument Sans" font-weight="700">View Report →</text>
+      </svg>
+      <div class="feat-chips">
+        <span class="feat-chip" style="background:var(--teal-light);color:var(--teal)">WhatsApp</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Email</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Scheduled</span>
+      </div>
+    </div>
+
+    <!-- Analytics -->
+    <div class="feat-card c-blue reveal reveal-d5">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="feat-icon-wrap" style="background:var(--blue-light)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.75" stroke-linecap="round">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </div>
+        <h3>Visual Analytics</h3>
+      </div>
+      <p>Live dashboards with pie charts, bar graphs, trend lines, and heatmaps. Drill from school-wide metrics down to any single student in seconds.</p>
+      <!-- Mini chart SVG -->
+      <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;background:var(--bg-2)">
+        <rect x="12" y="12" width="140" height="56" rx="8" fill="white"/>
+        <!-- Mini line chart -->
+        <polyline points="22,56 42,48 62,52 82,36 102,30 122,22 142,18" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M22,56 42,48 62,52 82,36 102,30 122,22 142,18 V62 H22Z" fill="rgba(24,71,212,.07)"/>
+        <circle cx="142" cy="18" r="3" fill="var(--blue)"/>
+        <rect x="160" y="12" width="148" height="56" rx="8" fill="white"/>
+        <!-- Donut ring -->
+        <circle cx="225" cy="40" r="22" fill="none" stroke="var(--bg-2)" stroke-width="8"/>
+        <circle cx="225" cy="40" r="22" fill="none" stroke="var(--green)" stroke-width="8" stroke-dasharray="88 50" stroke-dashoffset="-6" stroke-linecap="round"/>
+        <circle cx="225" cy="40" r="22" fill="none" stroke="var(--amber)" stroke-width="8" stroke-dasharray="36 102" stroke-dashoffset="-100" stroke-linecap="round"/>
+        <circle cx="225" cy="40" r="22" fill="none" stroke="var(--rose)" stroke-width="8" stroke-dasharray="14 124" stroke-dashoffset="-138" stroke-linecap="round"/>
+        <text x="220" y="38" font-size="8" fill="var(--ink)" font-family="JetBrains Mono" font-weight="500">68%</text>
+        <text x="218" y="47" font-size="6" fill="var(--ink-4)" font-family="Instrument Sans">Paid</text>
+        <rect x="254" y="24" width="46" height="32" rx="6" fill="var(--bg)"/>
+        <rect x="260" y="29" width="6" height="3" rx="1.5" fill="var(--green)"/>
+        <text x="270" y="32.5" font-size="5.5" fill="var(--ink-3)" font-family="Instrument Sans">Paid</text>
+        <rect x="260" y="36" width="6" height="3" rx="1.5" fill="var(--amber)"/>
+        <text x="270" y="39.5" font-size="5.5" fill="var(--ink-3)" font-family="Instrument Sans">Pending</text>
+        <rect x="260" y="43" width="6" height="3" rx="1.5" fill="var(--rose)"/>
+        <text x="270" y="46.5" font-size="5.5" fill="var(--ink-3)" font-family="Instrument Sans">Overdue</text>
+      </svg>
+      <div class="feat-chips">
+        <span class="feat-chip" style="background:var(--blue-light);color:var(--blue)">Live Dashboards</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Drill-down</span>
+        <span class="feat-chip" style="background:var(--bg-2);color:var(--ink-3)">Export</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ DEMO ROWS ══════════ -->
+<section class="demo-section" id="how-it-works-detail">
+  <div style="max-width:1100px;margin:0 auto">
+
+    <!-- FEE MANAGEMENT -->
+    <div class="demo-row">
+      <div class="demo-txt reveal">
+        <span class="label">Fee Management</span>
+        <h2>Never Chase a Payment Again</h2>
+        <p>ScholarMS auto-generates invoices on your schedule, tracks partial payments, and dispatches WhatsApp reminders to parents before due dates. Your principal gets a live cashflow dashboard — no spreadsheets, no chasing.</p>
+        <ul class="check-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--blue-light)"/><path d="M8 12l3 3 5-5" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/></svg>
+            Custom fee structures per class, term, or student
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--blue-light)"/><path d="M8 12l3 3 5-5" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/></svg>
+            Instalment plans with automated payment reminders
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--blue-light)"/><path d="M8 12l3 3 5-5" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/></svg>
+            PDF receipts generated and emailed automatically
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--blue-light)"/><path d="M8 12l3 3 5-5" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/></svg>
+            Scholarship and sibling discount management
+          </li>
+        </ul>
+      </div>
+      <div class="ui-panel reveal reveal-d1" style="background:var(--bg)">
+        <div class="ui-panel-header">
+          <span class="ui-panel-title">Fee Overview — Grade 8A</span>
+          <div style="display:flex;align-items:center;gap:6px"><div class="ui-status-dot"></div><span style="font-size:.72rem;color:var(--ink-4)">Live</span></div>
+        </div>
+        <!-- Fee rows -->
+        <div class="fee-row"><div class="fee-avatar" style="background:var(--blue-light);color:var(--blue)">AK</div><div class="fee-info"><div class="fee-name">Ayesha Khan</div><div class="fee-class">Roll #01 · Grade 8A</div></div><div class="fee-right"><div class="fee-amount">Rs 4,500</div><span class="badge badge-green">Paid</span></div></div>
+        <div class="fee-row"><div class="fee-avatar" style="background:var(--amber-light);color:var(--amber)">AR</div><div class="fee-info"><div class="fee-name">Ahmad Raza</div><div class="fee-class">Roll #02 · Grade 8A</div></div><div class="fee-right"><div class="fee-amount">Rs 4,500</div><span class="badge badge-amber">Pending</span></div></div>
+        <div class="fee-row"><div class="fee-avatar" style="background:var(--rose-light);color:var(--rose)">SM</div><div class="fee-info"><div class="fee-name">Sara Malik</div><div class="fee-class">Roll #03 · Grade 8A</div></div><div class="fee-right"><div class="fee-amount">Rs 4,500</div><span class="badge badge-rose">Overdue</span></div></div>
+        <div class="fee-row"><div class="fee-avatar" style="background:var(--green-light);color:var(--green)">UQ</div><div class="fee-info"><div class="fee-name">Usman Qazi</div><div class="fee-class">Roll #04 · Grade 8A</div></div><div class="fee-right"><div class="fee-amount">Rs 4,500</div><span class="badge badge-green">Paid</span></div></div>
+        <div style="background:var(--blue-pale);border-radius:var(--r-sm);padding:14px;display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+          <div><div style="font-size:.72rem;color:var(--blue);font-weight:600;margin-bottom:2px">Total Collected</div><div class="mono" style="font-size:1.1rem;font-weight:600;color:var(--ink)">Rs 94,500</div></div>
+          <div style="text-align:right"><div style="font-size:.72rem;color:var(--ink-4);font-weight:600;margin-bottom:2px">Outstanding</div><div class="mono" style="font-size:1.1rem;font-weight:600;color:var(--rose)">Rs 18,000</div></div>
+          <div style="text-align:right"><div style="font-size:.72rem;color:var(--ink-4);font-weight:600;margin-bottom:2px">Collection Rate</div><div class="mono" style="font-size:1.1rem;font-weight:600;color:var(--green)">84%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATTENDANCE -->
+    <div class="demo-row flip">
+      <div class="demo-txt reveal">
+        <span class="label">Mobile Attendance</span>
+        <h2>30-Second Attendance, from Any Phone</h2>
+        <p>Teachers open ScholarMS on their browser — no app install needed — and mark each student present or absent in seconds. The admin dashboard updates instantly, and parents are alerted automatically on three consecutive absences.</p>
+        <ul class="check-list">
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--rose-light)"/><path d="M8 12l3 3 5-5" stroke="var(--rose)" stroke-width="2" stroke-linecap="round"/></svg>Works on any Android or iPhone — no app download</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--rose-light)"/><path d="M8 12l3 3 5-5" stroke="var(--rose)" stroke-width="2" stroke-linecap="round"/></svg>Late-arrival and half-day logging supported</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--rose-light)"/><path d="M8 12l3 3 5-5" stroke="var(--rose)" stroke-width="2" stroke-linecap="round"/></svg>GPS-verified to ensure teachers are on school premises</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--rose-light)"/><path d="M8 12l3 3 5-5" stroke="var(--rose)" stroke-width="2" stroke-linecap="round"/></svg>Monthly attendance report auto-emailed to parents</li>
+        </ul>
+      </div>
+      <div class="ui-panel reveal reveal-d1" style="background:var(--bg)">
+        <div class="ui-panel-header">
+          <span class="ui-panel-title">📱 Teacher App — Grade 9B</span>
+          <span style="font-size:.78rem;color:var(--ink-4)">Sat, 9 May 2025</span>
+        </div>
+        <div class="att-row"><div class="att-ava" style="background:var(--blue-light);color:var(--blue)">BA</div><span class="att-name">Bilal Ahmed</span><div class="att-btns"><button class="att-btn att-p on" onclick="tap(this)">Present</button><button class="att-btn att-a" onclick="tap(this)">Absent</button></div></div>
+        <div class="att-row"><div class="att-ava" style="background:var(--green-light);color:var(--green)">FN</div><span class="att-name">Fatima Noor</span><div class="att-btns"><button class="att-btn att-p on" onclick="tap(this)">Present</button><button class="att-btn att-a" onclick="tap(this)">Absent</button></div></div>
+        <div class="att-row"><div class="att-ava" style="background:var(--rose-light);color:var(--rose)">UT</div><span class="att-name">Usman Tariq</span><div class="att-btns"><button class="att-btn att-p" onclick="tap(this)">Present</button><button class="att-btn att-a on" onclick="tap(this)">Absent</button></div></div>
+        <div class="att-row"><div class="att-ava" style="background:var(--amber-light);color:var(--amber)">ZQ</div><span class="att-name">Zara Qureshi</span><div class="att-btns"><button class="att-btn att-p on" onclick="tap(this)">Present</button><button class="att-btn att-a" onclick="tap(this)">Absent</button></div></div>
+        <div style="margin-top:4px">
+          <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--ink-4);margin-bottom:4px"><span>Session progress</span><span style="font-weight:600;color:var(--ink)">4 / 34 marked</span></div>
+          <div class="prog-wrap"><div class="prog-fill" style="width:12%"></div></div>
+        </div>
+        <button class="btn btn-blue w-full" style="justify-content:center;border-radius:var(--r-sm);margin-top:10px" onclick="submitAtt(this)">Submit Attendance →</button>
+      </div>
+    </div>
+
+    <!-- EXAM GENERATION -->
+    <div class="demo-row">
+      <div class="demo-txt reveal">
+        <span class="label">AI Exam Generation</span>
+        <h2>Full Exams, Auto-Built for Every Class</h2>
+        <p>Upload your syllabus to Google Sheets or cloud storage, select your question types and difficulty mix, and ScholarMS generates complete, print-ready papers for every class simultaneously — with zero manual editing required.</p>
+        <ul class="check-list">
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--amber-light)"/><path d="M8 12l3 3 5-5" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/></svg>Direct Google Sheets integration for question banks</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--amber-light)"/><path d="M8 12l3 3 5-5" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/></svg>Cloud storage support for PDF and DOCX syllabi</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--amber-light)"/><path d="M8 12l3 3 5-5" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/></svg>Automatic MCQ, short-answer, and long-question balance</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--amber-light)"/><path d="M8 12l3 3 5-5" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/></svg>Generates papers for all classes in parallel</li>
+        </ul>
+      </div>
+      <div class="ui-panel reveal reveal-d1" style="background:var(--bg)">
+        <div class="ui-panel-header">
+          <span class="ui-panel-title">🤖 Exam Generator</span>
+          <span class="badge badge-amber">AI Active</span>
+        </div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:.72rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Question Types</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap" id="chips">
+            <button class="exam-chip on" onclick="chipToggle(this)">MCQs</button>
+            <button class="exam-chip on" onclick="chipToggle(this)">Short Q</button>
+            <button class="exam-chip on" onclick="chipToggle(this)">Long Q</button>
+            <button class="exam-chip" onclick="chipToggle(this)">Fill Blanks</button>
+            <button class="exam-chip" onclick="chipToggle(this)">True/False</button>
+          </div>
+        </div>
+        <div style="background:var(--white);border-radius:var(--r-sm);padding:14px;border:1px solid var(--border);margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <span style="font-size:.8rem;font-weight:600;color:var(--ink)">Grade 10 — Biology</span>
+            <span class="mono" style="font-size:.72rem;color:var(--ink-4)">31/40 Q</span>
+          </div>
+          <div class="prog-wrap"><div class="prog-fill" id="eprog" style="width:78%"></div></div>
+          <div style="font-size:.72rem;color:var(--ink-4);margin-top:5px">Generating question set… 78% complete</div>
+        </div>
+        <div style="background:var(--amber-light);border-radius:var(--r-sm);padding:12px;border:1px solid rgba(196,120,10,.15)">
+          <div style="font-size:.72rem;font-weight:700;color:var(--amber);margin-bottom:5px">Preview — Q.4 (MCQ)</div>
+          <div style="font-size:.8rem;color:#78350f;line-height:1.5">Which organelle is the powerhouse of the cell?<br><span style="font-size:.75rem;opacity:.8">A) Nucleus &nbsp; B) Ribosome &nbsp; C) Mitochondria &nbsp; D) Vacuole</span></div>
+        </div>
+        <button class="btn btn-solid w-full" style="justify-content:center;border-radius:var(--r-sm);margin-top:12px" onclick="runExam(this)">Generate All Classes →</button>
+      </div>
+    </div>
+
+    <!-- PARENT REPORTS -->
+    <div class="demo-row flip">
+      <div class="demo-txt reveal">
+        <span class="label">Parent Reporting</span>
+        <h2>Reports That Reach Parents Instantly</h2>
+        <p>ScholarMS composes and dispatches personalised, data-rich progress reports to each parent over WhatsApp and Email on a monthly schedule — or on demand. No teacher intervention needed.</p>
+        <ul class="check-list">
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--teal-light)"/><path d="M8 12l3 3 5-5" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>Personalised per student, per subject, per term</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--teal-light)"/><path d="M8 12l3 3 5-5" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>Attendance summary and fee status bundled in</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--teal-light)"/><path d="M8 12l3 3 5-5" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>Delivery read receipts tracked in the admin panel</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--teal-light)"/><path d="M8 12l3 3 5-5" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>Scheduled monthly, or triggered on-demand</li>
+        </ul>
+      </div>
+      <div class="chat-bg reveal reveal-d1">
+        <div class="chat-header">
+          <div class="chat-ava">🏫</div>
+          <div><div class="chat-title">ScholarMS Notifications</div><div class="chat-online">● online</div></div>
+        </div>
+        <div class="bubble-in">
+          <div style="font-weight:700;color:#075e54;margin-bottom:6px">📊 Monthly Report — May 2025</div>
+          <div style="line-height:1.65"><strong>Student:</strong> Ayesha Khan (Grade 8A)<br><strong>Attendance:</strong> 96% ✅<br><strong>Avg Score:</strong> 87/100 📈<br><strong>Rank:</strong> 2nd in class 🏅<br><strong>Fee Status:</strong> Paid ✅</div>
+          <div style="margin-top:7px;color:#555;font-style:italic">Outstanding performance this month! Keep it up 🌟</div>
+          <div class="bubble-time">09:42 AM ✓✓</div>
+        </div>
+        <div class="bubble-out">
+          <div>JazakAllah! Thank you for the detailed report 😊</div>
+          <div class="bubble-time">09:45 AM ✓✓</div>
+        </div>
+        <div class="bubble-in" style="margin-top:11px">
+          <div>📅 Next report scheduled for <strong>1 June 2025</strong>. You'll be notified automatically.</div>
+          <div class="bubble-time">09:46 AM ✓✓</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ CHARTS ══════════ -->
+<section class="charts-bg" id="analytics">
+  <div class="section-head">
+    <span class="label reveal">Visual Analytics</span>
+    <h2 class="display reveal reveal-d1">Data That Speaks for Itself</h2>
+    <p class="reveal reveal-d2">Principals and coordinators make faster, better decisions with live dashboards tailored to every level of the organisation.</p>
+  </div>
+  <div class="charts-grid max-w">
+    <div class="chart-card reveal">
+      <div class="chart-card-head"><h4>Fee Collection Status</h4><p>Monthly breakdown across all grades</p></div>
+      <canvas id="pieC" height="200"></canvas>
+    </div>
+    <div class="chart-card reveal reveal-d1">
+      <div class="chart-card-head"><h4>Attendance by Grade</h4><p>Weekly average — current term</p></div>
+      <canvas id="barC" height="200"></canvas>
+    </div>
+    <div class="chart-card reveal reveal-d2">
+      <div class="chart-card-head"><h4>Exam Score Trend</h4><p>6-month rolling average</p></div>
+      <canvas id="lineC" height="200"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ INTEGRATIONS ══════════ -->
+<section class="int-section" id="integrations">
+  <div class="section-head">
+    <span class="label reveal">Integrations</span>
+    <h2 class="display reveal reveal-d1">Plugs Into Your Existing Stack</h2>
+    <p class="reveal reveal-d2">No migration headaches. ScholarMS connects to the tools you already rely on, from day one.</p>
+  </div>
+  <div class="int-grid max-w-sm reveal">
+
+    <div class="int-card">
+      <div class="int-logo" style="background:#e6f4ea">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9-4-9-9-9z" fill="#0f9d58"/><path d="M8 12l2 2 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      Google Sheets
+    </div>
+
+    <div class="int-card">
+      <div class="int-logo" style="background:#e7f5e8">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M16 3C9 3 3 8.4 3 15.2c0 4 2.1 7.5 5.3 9.8L7 28l3.3-1.1C11.9 27.6 13.9 28 16 28c7 0 13-5.4 13-12.8S23 3 16 3z" fill="#25d366"/><path d="M22.2 18.5c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2c-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.8-1-2.4-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2 3 4.9 4.2.7.3 1.2.4 1.6.5.7.2 1.3.2 1.8.1.5-.1 1.6-.6 1.9-1.3.2-.6.2-1.1.1-1.3-.1-.1-.3-.2-.6-.4z" fill="#fff"/></svg>
+      </div>
+      WhatsApp
+    </div>
+
+    <div class="int-card">
+      <div class="int-logo" style="background:#fce8e6">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z" fill="#EA4335"/><path d="M22 6l-10 7L2 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      Gmail / Email
+    </div>
+
+    <div class="int-card">
+      <div class="int-logo" style="background:#e8f0fe">
+        <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 18a8 8 0 110-16 8 8 0 010 16z" fill="#4285F4" opacity=".3"/><path d="M8 7h3v4H8zM13 7h3v4h-3zM8 13h8v4H8z" fill="#4285F4"/></svg>
+      </div>
+      Google Drive
+    </div>
+
+    <div class="int-card">
+      <div class="int-logo" style="background:#e6f0fb">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#0078D4"/><path d="M5 7h4v10H5zM10 7h4v10h-4zM15 7h4v10h-4z" fill="#fff" opacity=".8"/></svg>
+      </div>
+      OneDrive
+    </div>
+
+    <div class="int-card">
+      <div class="int-logo" style="background:#e7f3ff">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#2D8CFF"/><path d="M7 9l5 3 5-3M7 12l5 3 5-3M7 15l5 3 5-3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      Zoom
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section class="steps-bg" id="how-it-works">
+  <div class="section-head">
+    <span class="label reveal">Onboarding</span>
+    <h2 class="display reveal reveal-d1">Live in Under an Hour</h2>
+    <p class="reveal reveal-d2">No IT department. No migration project. Just four clean steps from sign-up to your first report.</p>
+  </div>
+  <div class="steps-row">
+    <div class="step-item reveal"><div class="step-num">1</div><h4>Create School Profile</h4><p>Add your school details, class structure, and fee tiers in minutes.</p></div>
+    <div class="step-item reveal reveal-d1"><div class="step-num">2</div><h4>Import Students</h4><p>Upload a CSV or sync from Google Sheets — all profiles created automatically.</p></div>
+    <div class="step-item reveal reveal-d2"><div class="step-num">3</div><h4>Enable Modules</h4><p>Turn on fees, attendance, exams, and reports with a single toggle per module.</p></div>
+    <div class="step-item reveal reveal-d3"><div class="step-num">4</div><h4>Go Live</h4><p>Teachers mark attendance, exams generate, parents receive reports — automatically.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="testi-bg">
+  <div class="section-head">
+    <span class="label reveal">Testimonials</span>
+    <h2 class="display reveal reveal-d1">Trusted by Educators Across Pakistan</h2>
+  </div>
+  <div class="testi-grid max-w">
+  {% for t in testimonials %}
+  <div class="testi-card reveal {% if loop.index > 1 %}reveal-d{{ loop.index - 1 }}{% endif %}">
+    <div class="testi-stars">
+      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+    </div>
+    <blockquote>"{{ t.message }}"</blockquote>
+    <div class="testi-person">
+      <div class="testi-avatar" style="background:{{ t.bg_color }};color:{{ t.text_color }}">{{ t.initials }}</div>
+      <div><div class="testi-name">{{ t.name }}</div><div class="testi-role">{{ t.role }}</div></div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-bg">
+  <div class="cta-inner">
+    <h2>Ready to Modernise Your School?</h2>
+    <p>Join 2,400+ schools already running smarter with ScholarMS. Setup takes less than an hour, and our team is with you every step of the way.</p>
+    <div class="cta-actions">
+      <a href="#demo" class="btn btn-white btn-lg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Book a Free Demo
+      </a>
+      <a href="#" class="btn btn-ghost-white btn-lg">Start Free Trial →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DEMO FORM ══════════ -->
+<section class="demo-bg" id="demo">
+  <div class="section-head">
+    <span class="label reveal">Book a Demo</span>
+    <h2 class="display reveal reveal-d1">See ScholarMS Live, For Free</h2>
+    <p class="reveal reveal-d2">Our team delivers a personalised walkthrough tailored to your school's size and needs. No commitment, no pressure.</p>
+  </div>
+
+  <form class="demo-card reveal" id="demoForm">
+    <div id="formAlert" style="display:none;margin-bottom:16px;padding:12px;border-radius:8px;font-size:.9rem;"></div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>Your Full Name *</label>
+        <input type="text" name="full_name" placeholder="Dr. Ahmed Khan" required>
+      </div>
+      <div class="field">
+        <label>School Name *</label>
+        <input type="text" name="school_name" placeholder="Beacon House Islamabad" required>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>WhatsApp / Phone *</label>
+        <input type="tel" name="phone" placeholder="+92 300 0000000" required>
+      </div>
+      <div class="field">
+        <label>Email Address *</label>
+        <input type="email" name="email" placeholder="you@school.edu.pk" required>
+      </div>
+    </div>
+
+    <div class="form-grid" style="margin-bottom:16px">
+      <div class="field">
+        <label>Number of Students *</label>
+        <select name="students_count" required>
+          <option value="">Select...</option>
+          <option>Under 200</option>
+          <option>200 – 500</option>
+          <option>500 – 1,000</option>
+          <option>1,000 – 2,000</option>
+          <option>2,000+</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Preferred Time *</label>
+        <select name="preferred_time" required>
+          <option value="">Select...</option>
+          <option>Morning (9 am – 12 pm)</option>
+          <option>Afternoon (12 pm – 3 pm)</option>
+          <option>Evening (3 pm – 6 pm)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:20px">
+      <label>What Are You Looking to Solve?</label>
+      <textarea name="message" placeholder="e.g. We need to automate fee collection and send monthly progress reports to parents via WhatsApp…"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-blue w-full btn-lg" id="submitBtn" style="justify-content:center;border-radius:var(--r);">
+      <span class="btn-text">Book My Free Demo →</span>
+      <span class="btn-loader" style="display:none;">Sending...</span>
+    </button>
+
+    <p class="form-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Your information is kept private. We respond within 2 business hours.
+    </p>
+  </form>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-grid max-w">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom:4px">
+        <div class="nav-logo-mark" style="background:rgba(255,255,255,.12)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3L2 8.5l10 5.5 10-5.5L12 3Z" fill="white" opacity=".7"/>
+            <path d="M2 15.5l10 5.5 10-5.5" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M2 12l10 5.5L22 12" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".5"/>
+          </svg>
+        </div>
+        <span class="nav-logo-text" style="color:#fff">Scholar<em style="color:rgba(255,255,255,.45);font-style:normal">MS</em></span>
+      </a>
+      <p>Intelligent school management built for the modern Pakistani educator. Trusted by 2,400+ schools and growing.</p>
+    </div>
+    <div class="footer-col"><h5>Product</h5><ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Changelog</a></li><li><a href="#">Roadmap</a></li></ul></div>
+  </div>
+  <div class="footer-bottom max-w" >
+    <p>© {{ year }} ScholarMS. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Extra styles for exam chips -->
+<style>
+.exam-chip { padding:6px 15px; border:1.5px solid var(--border-2); border-radius:100px; font-size:.78rem; font-weight:600; cursor:pointer; background:var(--white); color:var(--ink-3); transition:all .15s; font-family:'Instrument Sans',sans-serif; }
+.exam-chip.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
