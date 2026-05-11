@@ -151,53 +151,134 @@ new Chart(document.getElementById('lineC'),{
 
 /* ── Video Player ── */
 
-document.addEventListener('DOMContentLoaded', () => {
-  const wrapper = document.getElementById('demoVideoWrapper');
-  const video = document.getElementById('demoVideo');
-  const playBtn = document.getElementById('videoPlayBtn');
-  const playIcon = playBtn.querySelector('.play-icon');
-  const pauseIcon = playBtn.querySelector('.pause-icon');
+class VideoPlayer {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) return;
+    
+    this.video = this.container.querySelector('.video-element');
+    this.playPauseBtn = this.container.querySelector('#playPauseBtn');
+    this.bigPlayBtn = this.container.querySelector('#bigPlayBtn');
+    this.muteBtn = this.container.querySelector('#muteBtn');
+    this.volumeSlider = this.container.querySelector('#volumeSlider');
+    this.fullscreenBtn = this.container.querySelector('#fullscreenBtn');
+    this.progressBar = this.container.querySelector('#progressBar');
+    this.progressFilled = this.container.querySelector('#progressFilled');
+    this.currentTimeEl = this.container.querySelector('#currentTime');
+    this.durationEl = this.container.querySelector('#duration');
+    
+    this.isDragging = false;
+    this.init();
+  }
   
-  if (!video || !wrapper) return;
+  init() {
+    this.container.classList.add('paused');
+    
+    // Event listeners
+    this.playPauseBtn.addEventListener('click', () => this.togglePlay());
+    this.bigPlayBtn.addEventListener('click', () => this.togglePlay());
+    this.video.addEventListener('click', () => this.togglePlay());
+    this.muteBtn.addEventListener('click', () => this.toggleMute());
+    this.volumeSlider.addEventListener('input', (e) => this.setVolume(e.target.value));
+    this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+    
+    this.video.addEventListener('timeupdate', () => this.updateProgress());
+    this.video.addEventListener('loadedmetadata', () => this.updateDuration());
+    this.video.addEventListener('play', () => this.onPlay());
+    this.video.addEventListener('pause', () => this.onPause());
+    this.video.addEventListener('ended', () => this.onPause());
+    
+    // Progress bar seeking
+    this.progressBar.addEventListener('click', (e) => this.seek(e));
+    this.progressBar.addEventListener('mousedown', () => this.isDragging = true);
+    document.addEventListener('mouseup', () => this.isDragging = false);
+    document.addEventListener('mousemove', (e) => {
+      if (this.isDragging) this.seek(e);
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (document.activeElement.tagName === 'INPUT') return;
+      if (e.code === 'Space' && this.isInViewport()) {
+        e.preventDefault();
+        this.togglePlay();
+      }
+    });
+  }
   
-  // Initial state
-  wrapper.classList.add('paused');
-  
-  function togglePlay() {
-    if (video.paused) {
-      video.play();
+  togglePlay() {
+    if (this.video.paused) {
+      this.video.play();
     } else {
-      video.pause();
+      this.video.pause();
     }
   }
   
-  // Click handlers
-  playBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    togglePlay();
-  });
+  onPlay() {
+    this.container.classList.remove('paused');
+    this.container.classList.add('playing');
+    this.playPauseBtn.querySelector('.icon-play').style.display = 'none';
+    this.playPauseBtn.querySelector('.icon-pause').style.display = 'block';
+  }
   
-  wrapper.addEventListener('click', togglePlay);
+  onPause() {
+    this.container.classList.remove('playing');
+    this.container.classList.add('paused');
+    this.playPauseBtn.querySelector('.icon-play').style.display = 'block';
+    this.playPauseBtn.querySelector('.icon-pause').style.display = 'none';
+  }
   
-  // Update UI on play/pause
-  video.addEventListener('play', () => {
-    wrapper.classList.remove('paused');
-    wrapper.classList.add('playing');
-    playIcon.style.display = 'none';
-    pauseIcon.style.display = 'block';
-  });
+  toggleMute() {
+    this.video.muted = !this.video.muted;
+    this.muteBtn.querySelector('.icon-volume').style.display = this.video.muted ? 'none' : 'block';
+    this.muteBtn.querySelector('.icon-mute').style.display = this.video.muted ? 'block' : 'none';
+  }
   
-  video.addEventListener('pause', () => {
-    wrapper.classList.remove('playing');
-    wrapper.classList.add('paused');
-    playIcon.style.display = 'block';
-    pauseIcon.style.display = 'none';
-  });
+  setVolume(value) {
+    this.video.volume = value;
+    this.video.muted = value == 0;
+    this.toggleMute();
+    this.toggleMute(); // update icon
+  }
   
-  video.addEventListener('ended', () => {
-    wrapper.classList.remove('playing');
-    wrapper.classList.add('paused');
-    playIcon.style.display = 'block';
-    pauseIcon.style.display = 'none';
-  });
+  updateProgress() {
+    const percent = (this.video.currentTime / this.video.duration) * 100;
+    this.progressFilled.style.width = `${percent}%`;
+    this.currentTimeEl.textContent = this.formatTime(this.video.currentTime);
+  }
+  
+  updateDuration() {
+    this.durationEl.textContent = this.formatTime(this.video.duration);
+  }
+  
+  seek(e) {
+    const rect = this.progressBar.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    this.video.currentTime = percent * this.video.duration;
+  }
+  
+  toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      this.container.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
+  
+  formatTime(seconds) {
+    if (isNaN(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+  
+  isInViewport() {
+    const rect = this.container.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  }
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  new VideoPlayer('scholarVideoPlayer');
 });
