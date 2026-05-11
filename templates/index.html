@@ -122,8 +122,29 @@
     <p class="reveal reveal-d2">A concise walkthrough of how ScholarMS transforms your school's daily operations from day one.</p>
   </div>
   <div class="video-frame reveal">
-    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&color=white" title="ScholarMS Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  <div class="custom-video-wrapper" id="demoVideoWrapper">
+    <video 
+      id="demoVideo" 
+      class="custom-video"
+      poster="/static/images/video-thumbnail.jpg"
+      preload="metadata"
+      playsinline
+    >
+      <source src="https://res.cloudinary.com/your-cloud/video/upload/v1234567890/scholarms-demo.mp4" type="video/mp4">
+      Your browser doesn't support video.
+    </video>
+    
+    <!-- Custom play/pause overlay -->
+    <button class="video-play-btn" id="videoPlayBtn" aria-label="Play video">
+      <svg class="play-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg class="pause-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
   </div>
+</div>
   <div class="video-meta reveal" style="margin-top:20px">
     <span class="video-meta-pill">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>

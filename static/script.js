@@ -148,3 +148,56 @@ new Chart(document.getElementById('lineC'),{
   },
   options:{ scales:{y:{min:60,max:100,grid:{color:'#f0efe9'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}, plugins:{legend:{display:false}}, animation:{duration:1400} }
 });
+
+/* ── Video Player ── */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wrapper = document.getElementById('demoVideoWrapper');
+  const video = document.getElementById('demoVideo');
+  const playBtn = document.getElementById('videoPlayBtn');
+  const playIcon = playBtn.querySelector('.play-icon');
+  const pauseIcon = playBtn.querySelector('.pause-icon');
+  
+  if (!video || !wrapper) return;
+  
+  // Initial state
+  wrapper.classList.add('paused');
+  
+  function togglePlay() {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+  
+  // Click handlers
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePlay();
+  });
+  
+  wrapper.addEventListener('click', togglePlay);
+  
+  // Update UI on play/pause
+  video.addEventListener('play', () => {
+    wrapper.classList.remove('paused');
+    wrapper.classList.add('playing');
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'block';
+  });
+  
+  video.addEventListener('pause', () => {
+    wrapper.classList.remove('playing');
+    wrapper.classList.add('paused');
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+  });
+  
+  video.addEventListener('ended', () => {
+    wrapper.classList.remove('playing');
+    wrapper.classList.add('paused');
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+  });
+});
