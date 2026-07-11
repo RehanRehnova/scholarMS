@@ -1,3 +1,5 @@
 flask
 supabase
 dotenv
+gspread
+oauth2client
