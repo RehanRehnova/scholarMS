@@ -18,13 +18,13 @@ load_dotenv()
 
 app = Flask(__name__)
 
-#url: str = os.environ.get("SUPABASE_URL")
-#key: str = os.environ.get("SUPABASE_KEY")
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
 
-#if not url or not key:
- #   raise ValueError("Missing SUPABASE_URL or SUPABASE_KEY in .env")
+if not url or not key:
+    raise ValueError("Missing SUPABASE_URL or SUPABASE_KEY in .env")
 
-#supabase: Client = create_client(url, key)
+supabase: Client = create_client(url, key)
 
 
 SMTP_EMAIL = os.getenv("SMTP_EMAIL") 
